@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>New User</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        First name:<br>
+		  <input type="text" name="username">
+		  <br>
+		  Email:<br>
+		  <input type="email" name="email">
+		  <br>
+          Password:<br>
+		  <input type="password" name="password">
+		  <br><br>
+        <button type="submit" class="save btn btn-default">Guardar</button>
+    </form>
+{% endblock %}
