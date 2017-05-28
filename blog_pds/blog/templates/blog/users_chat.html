@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>Users chat</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+		{%if sender_messages%}
+		{% for damoa in sender_messages %}
+		<p>{{damoa.sender}} </p>
+		<p><h2>{{damoa.text}}</h2> </p>
+		<p>{{damoa.created_date}} </p>
+		{% endfor %}
+		{% endif %}
+        Message:<br>
+		  <input type="text" name="message">
+		  <br>
+        <button type="submit" class="save btn btn-default">Guardar</button>
+{% endblock %}

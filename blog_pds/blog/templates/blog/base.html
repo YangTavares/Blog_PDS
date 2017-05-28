@@ -1,7 +1,7 @@
 {%load staticfiles%}
 <html>
     <head>
-        <title>Django Girls blog</title>
+        <title>Blog PDS</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
@@ -13,7 +13,8 @@
          <a href="{% url 'blog.views.user_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
          <a href="{% url 'blog.views.user_login' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
          <a href="{% url 'blog.views.user_logout' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-		<h1><a href="/">Django Girls Blog</a></h1>
+         <a href="{% url 'blog.views.search_db' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+		<h1><a href="/">Blog PDS</a></h1>
     </div>
     <div class="content container">
         <div class="row">

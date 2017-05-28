@@ -3,7 +3,9 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.post_list),
-    url(r'^logout$', views.user_logout, name='user_logout'),
+    url(r'^users_chat/(?P<pk>[0-9]+)/$', views.users_chat, name='users_chat'),
+    url(r'^search_db/$', views.search_db, name='search_db'),
+    url(r'^logout/$', views.user_logout, name='user_logout'),
     url(r'^user/login/$', views.user_login, name='user_login'),
 	url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
 	url(r'^post/new/$', views.post_new, name='post_new'),

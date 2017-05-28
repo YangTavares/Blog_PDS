@@ -13,7 +13,6 @@
 		{% for comment in comments %}
 		<p>{{comment.author}} </p>
 		<p>{{comment.text}} </p>
-		<a href="{% url 'blog.views.users_chat' pk=comment.author.pk%}">Talk</a>
 		{% endfor %}
 		<form  method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}

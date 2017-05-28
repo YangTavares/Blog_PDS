@@ -14,8 +14,3 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ( 'text',)
 
-class UserForm(forms.ModelForm):
-
-    class Meta:
-        model = CustomUser
-        fields = ( 'name','nick_name', 'email')
