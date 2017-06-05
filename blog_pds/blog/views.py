@@ -70,6 +70,10 @@ def user_new(request):
 		password = request.POST.get('password')
 		new_user = User.objects.create_user(username,email,password)
 		new_user.save()	
+		user_extend = UserExtend()
+		user_extend.soul = new_user
+		user_extend.profile_pic = request.POST.get('pic_url')
+		user_extend.save()
 		#form = UserForm(request.POST)
         #if form.is_valid():
         #    custom_user = form.save(commit=False)

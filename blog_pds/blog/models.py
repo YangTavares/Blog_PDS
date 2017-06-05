@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
 
-
+class UserExtend(models.Model):
+	soul = models.OneToOneField('auth.User', on_delete=models.CASCADE)
+	profile_pic = models.CharField(max_length=2000)
 
 class Post(models.Model):
 	author = models.ForeignKey('auth.User')
