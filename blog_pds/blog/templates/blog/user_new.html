@@ -2,12 +2,36 @@
 
 {% block content %}
     <h1>New User</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+	{% if exist_flag == 1 %}
+		<p>User or email already exists</p>
+	{% endif %}
+    <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
+        {% for field in form %}
+			<div class="fieldWrapper">
+				{{ field.errors }}
+				{{ field.label_tag }} {{ field }}
+				{% if field.help_text %}
+						<p class="help">{{ field.help_text|safe }}</p>
+				{% endif %}
+			</div>
+		{% endfor %}
+        {% for field in extendform %}
+			<div class="fieldWrapper">
+				{{ field.errors }}
+				{{ field.label_tag }} {{ field }}
+				{% if field.help_text %}
+						<p class="help">{{ field.help_text|safe }}</p>
+				{% endif %}
+			</div>
+		{% endfor %}
+        <button type="submit" class="save btn btn-default">Guardar</button>
+    </form>
+  <!--  <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
         First name:<br>
 		  <input type="text" name="username">
 		  <br>
-		  Profile picture URL:<br>
-		  <input type="text" name="pic_url">
+		  Profile picture:<br>
+		  <input type="file" name="prof_pic">
 		  Email:<br>
 		  <input type="email" name="email">
 		  <br>
@@ -15,5 +39,5 @@
 		  <input type="password" name="password">
 		  <br><br>
         <button type="submit" class="save btn btn-default">Guardar</button>
-    </form>
+    </form> --!>
 {% endblock %}

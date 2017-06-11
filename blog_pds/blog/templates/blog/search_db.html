@@ -15,7 +15,9 @@
 		{% for usernames in usernames %}
 			<div class="post">
 				<p>username: {{ usernames.username }}</p>
-				<a href="{% url 'blog.views.users_chat' pk=usernames.pk%}">Talk</a>
+				{%if usernames != request.user%}		
+						<a href="{% url 'blog.views.users_chat' pk=usernames.pk%}">Talk</a>	
+				{% endif %}
 			</div>
 		{% endfor %}
 		{% endif %}

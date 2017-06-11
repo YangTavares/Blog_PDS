@@ -37,7 +37,8 @@ def search_db(request):
 			return render(request, 'blog/search_db.html', {'usernames':usernames, 'found_flag':found_flag})
 		elif request.POST.get('search_option')=="user_message":
 			name = request.POST.get('username')
-			damoa_message = Damoa.objects.filter(text__contains=name)
+			damoa_message = Damoa.objects.filter(text__contains=name, receiver=request.user) | Damoa.objects.filter(text__contains=name, sender=request.user)
+
 			if damoa_message.exists():
 				found_flag=1
 			else:
@@ -59,72 +60,71 @@ def user_login(request):
 			login(request, login_user)
 			return render(request, 'blog/post_list.html')
 		else:
-			return render(request, 'blog/user_login.html')
+			invalid_user = "yes"
+			return render(request, 'blog/user_login.html',{'invalid_user':invalid_user})
 	else:
 		return render(request, 'blog/user_login.html')
 
+
 def user_new(request):
+	exist_flag = 0
 	if request.method == "POST":
-		username = request.POST.get('username')
-		email    = request.POST.get('email')
-		password = request.POST.get('password')
-		new_user = User.objects.create_user(username,email,password)
-		new_user.save()	
-		user_extend = UserExtend()
-		user_extend.soul = new_user
-		user_extend.profile_pic = request.POST.get('pic_url')
-		user_extend.save()
-		#form = UserForm(request.POST)
-        #if form.is_valid():
-        #    custom_user = form.save(commit=False)
-        #    custom_user.save()
-           # return redirect('post_detail', pk=post.pk)
-    #else:
-    #    form = UserForm()
-	return render(request, 'blog/user_new.html')
+		form = UserForm(request.POST, request.FILES,prefix='form')
+		extendform = UserExtendForm(request.POST, request.FILES,prefix='extendform')
+		if form.is_valid() and extendform.is_valid():
+			new_user = form.save()
+			new_user.set_password(form.cleaned_data['password'])
+			new_user.save()
+			user_extend = extendform.save(commit=False)
+			user_extend.soul = new_user
+			user_extend.profile_pic.name = str(new_user.pk)+'.png'
+			user_extend.save()
+	else:
+		form = UserForm(prefix='form')
+		extendform = UserExtendForm(prefix='extendform')
+	return render(request, 'blog/user_new.html', {'exist_flag':exist_flag, 'form':form,'extendform':extendform})
 
 def post_list(request):
-    posts = Post.objects.filter()
-    return render(request, 'blog/post_list.html', {'posts': posts})
+	posts = Post.objects.filter()
+	return render(request, 'blog/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
- 	if request.method == "POST":
- 		form = CommentForm(request.POST)	
- 		if form.is_valid():
- 			comment = form.save(commit=False)
- 			comment.post_id = Post.objects.get(pk=pk)	
- 			comment.author = request.user
- 			comment.created_date = timezone.now()
- 			comment.save()
+	if request.method == "POST":
+		form = CommentForm(request.POST, request.FILES)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.post_id = Post.objects.get(pk=pk)
+			comment.author = request.user
+			comment.created_date = timezone.now()
+			comment.save()
 	post = get_object_or_404(Post, pk=pk)
 	comments = Comment.objects.filter(post_id=post.id)
 	form = CommentForm()
 	return render(request, 'blog/post_detail.html', {'post': post,'comments': comments,'form': form})
 
 def post_new(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-           # return redirect('post_detail', pk=post.pk)
-    else:
-        form = PostForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
+	if request.method == "POST":
+		form = PostForm(request.POST, request.FILES)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.author = request.user
+			post.published_date = timezone.now()
+			post.save()
+	else:
+		form = PostForm()
+	return render(request, 'blog/post_edit.html', {'form': form})
 
 def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
-    else:
-        form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+	post = get_object_or_404(Post, pk=pk)
+	if request.method == "POST":
+		form = PostForm(request.POST, instance=post)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.author = request.user
+			post.published_date = timezone.now()
+			post.save()
+			return redirect('post_detail', pk=post.pk)
+	else:
+		form = PostForm(instance=post)
+	return render(request, 'blog/post_edit.html', {'form': form})
 
