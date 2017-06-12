@@ -10,8 +10,8 @@ class PostForm(forms.ModelForm):
 		fields = ('post_pic','post_text','title', 'text',)
 	def clean_text(self):
 		data = self.cleaned_data['text']
-		if "fred@example.com" not in data:
-			raise forms.ValidationError("You have forgotten about Fred!")
+		#if "fred@example.com" not in data:
+		#	raise forms.ValidationError("You have forgotten about Fred!")
 		
 		# Always return a value to use as the new cleaned data, even if
 		# this method didn't change it.

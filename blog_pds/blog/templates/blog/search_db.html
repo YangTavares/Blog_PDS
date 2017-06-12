@@ -6,6 +6,7 @@
 		  <select name="search_option">
 		  		<option value="blog_user">User</option>
 		  		<option value="user_message">Message</option>
+		  		<option value="blog_post">Post</option>
 		  </select>
 		  <input type="text" name="username">
 		  <br>
@@ -28,6 +29,24 @@
 				<p>From: {{ damoa_message.sender }}</p>
 				<a href="{% url 'blog.views.users_chat' pk=damoa_message.receiver.pk%}">Talk</a>
 			</div>
+		{% endfor %}
+		{% endif %}
+		{%if blog_post%}
+		{% for post in blog_post %}
+			<!-- First Blog Post -->
+			<h2>
+				<a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a>
+			</h2>
+			<p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.published_date }}</p>
+			<hr>
+			<img class="img-responsive" src="{{post.post_pic.url}}" alt="">
+			<hr>
+	{% autoescape off %}
+			<p>{{ post.post_text|linebreaksbr }}</p>
+	{% endautoescape %}
+			<a class="btn btn-primary" href="{% url 'blog.views.post_detail' pk=post.pk %}">Read More<span class="glyphicon glyphicon-chevron-right"></span></a>
+
+			<hr>
 		{% endfor %}
 		{% endif %}
 {% if found_flag == 0 %}

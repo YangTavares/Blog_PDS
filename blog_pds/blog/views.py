@@ -44,6 +44,15 @@ def search_db(request):
 			else:
 				found_flag=0
 			return render(request, 'blog/search_db.html', {'damoa_message':damoa_message, 'found_flag':found_flag})
+		elif request.POST.get('search_option')=="blog_post" or True:
+			text = request.POST.get('username')
+			blog_post = Post.objects.filter(text__contains=text)
+
+			if blog_post.exists():
+				found_flag=1
+			else:
+				found_flag=0
+			return render(request, 'blog/search_db.html', {'blog_post':blog_post, 'found_flag':found_flag})
 	found_flag=1
 	return render(request, 'blog/search_db.html')
 
@@ -109,6 +118,7 @@ def post_new(request):
 			post = form.save(commit=False)
 			post.author = request.user
 			post.published_date = timezone.now()
+			post.post_pic.name = str(post.pk)+'.png'
 			post.save()
 	else:
 		form = PostForm()
@@ -117,11 +127,12 @@ def post_new(request):
 def post_edit(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	if request.method == "POST":
-		form = PostForm(request.POST, instance=post)
+		form = PostForm(request.POST, request.FILES, instance=post)
 		if form.is_valid():
 			post = form.save(commit=False)
 			post.author = request.user
 			post.published_date = timezone.now()
+			post.post_pic.name = str(post.pk)+'.png'
 			post.save()
 			return redirect('post_detail', pk=post.pk)
 	else:

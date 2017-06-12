@@ -2,7 +2,6 @@
 
 {% block content %}
     <h1>Users chat</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
 		{%if sender_messages%}
 		{% for damoa in sender_messages %}
 		<p>{{damoa.sender}} </p>
@@ -10,8 +9,14 @@
 		<p>{{damoa.created_date}} </p>
 		{% endfor %}
 		{% endif %}
-        Message:<br>
-		  <input type="text" name="message">
-		  <br>
-        <button type="submit" class="save btn btn-default">Guardar</button>
+		<div class="well">
+			<h4>Leave a Comment:</h4>
+			<form method="POST" role="form" class="post-form">{% csrf_token %}
+				<div class="form-group">
+					<textarea class="form-control" rows="3" name = "message"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+
 {% endblock %}
