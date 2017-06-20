@@ -4,9 +4,17 @@
     <h1>Users chat</h1>
 		{%if sender_messages%}
 		{% for damoa in sender_messages %}
-		<p>{{damoa.sender}} </p>
-		<p><h2>{{damoa.text}}</h2> </p>
-		<p>{{damoa.created_date}} </p>
+		<div class="media">
+			<a class="pull-left" href="#">
+				<img class="media-object" style="width:64px;height:64px" src="{{damoa.sender.userextend.profile_pic.url}}" alt="">
+			</a>
+			<div class="media-body">
+				<h4 class="media-heading">{{damoa.sender.username}}
+					<small>{{damoa.created_date}}</small>
+				</h4>
+				{{damoa.text}}
+			</div>
+		</div>
 		{% endfor %}
 		{% endif %}
 		<div class="well">
