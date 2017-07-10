@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - Sample Post</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1 style="margin-bottom:40px">Creating the first class and printing a hello world!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p style="margin-bottom:40px">First, lets open the MonoDevelop. We are using MonoDevelop software because it is free and it is more likely C# sintax than VisualStudio sintax. C# sintax is simmilar to Java (for those familiar).</p>
+                    <img class="img-responsive" src="img/new.jpg" alt="" style="margin-bottom:40px">
+                    <p style="margin-bottom:40px">Click on "New", and then "Console Project" (Remember of selecting C# at the right).</p>
+                    <img  class="img-responsive" src="img/name.jpg" alt="" style="margin-bottom:40px">
+                    <p style="margin-bottom:40px">Then choose the name of your project at the Project Name field and Also the directory you want to put.</p>
+                    <img style="margin-bottom:40px" class="img-responsive" src="img/namespace.png" alt="">
+                    <p style="margin-bottom:40px">Now we got a page called "Program.cs". If dont, try right click on the directory "Propeties" and then Add->New File...->General->Empty Class->New</p>
+                    <p style="margin-bottom:40px">So we got a class declaration named "MainClass" inside a "namespace" statement called "Tutorial".</p>
+                    <xmp>
+//The namespace keyword is used to declare a scope that contains a set of related objects. You can use a namespace to organize code      //elements and to create globally unique types. See more at: https://msdn.microsoft.com/en-us/library/z2kcy19k.aspx                   
+namespace Tutorial
+{
+    //Declaration of a class
+    class MainClass
+    {
+        
+    }
+
+}
+                    </xmp>       
+                    <img style="margin-bottom:40px" class="img-responsive" src="img/FirstClass.jpg" alt="">                    
+                    <p>Now we got a sample code with a file named Tutorial.cs that prints a "Hello World!" at the console.
+                    </p>
+                    <xmp>
+
+// This prevents the user to no use the System statement at some points
+// for example: System.Console.WriteLine ("Hello World!");
+using System;
+
+namespace Tutorial
+{
+    class MainClass
+    {
+        //This is the main method of the program
+        public static void Main (string[] args)
+        {
+            //This prints a "Hello World!" at the console
+            Console.WriteLine ("Hello World!");
+        }
+    }
+}
+                    </xmp>
+                    <img style="margin-bottom:40px" class="img-responsive" src="img/hworld.png" alt="">
+                    <p>The result is a "Hello World!" at the console as shown. Press F5 to Run.                   
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

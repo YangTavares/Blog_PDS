@@ -1,0 +1,269 @@
+
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+<head>
+<style>
+.myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 60px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+		</script>
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">About the Author
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8" style="width:40%" >
+                <img class="img-responsive" src="/media/about_me/about.jpg" alt="">
+            </div>
+<font size="4">
+            <div class="col-md-4" style="width:60%">
+                <p>Is doing Bacharelor of Science in Computer Engineering at the Federal University of Rio Grande do Norte (Brazil) in cooperation with the California State University , East Bay, where he participated in Science without Borders government exchange program. Currently doing scientific initiation by the Instrumentation and Microelectronics Laboratory (LIME) at Center for Research and Innovation in Information Technology.
+<p>
+This Blog is the extension of a class project, intended to be a complement of the author studies and possibly help anyone interested on content.  </p>
+                <h3>Areas of interest</h3>
+                <ul>
+                    <li>FPGA Architecture and Design</li>
+                    <li>Microeletronics</li>
+                    <li>Embedded systems</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+		<hr>
+                <p style="text-align: justify;" > It's interest for technology began at "Instituto Maria Auxiliadora" High School, where he had the opportunity to deal with educational robotics extra-class activity, where professor Alexandre Amaral gave classes using LEGO Mindstorms kits to teach various topics from architecture assembly to programming introduction. After, the <a href="http://www.obr.org.br/">OBR</a> (Brazilian Robotics Olympiad) was presented to put in practice the knowledge acquired. The mission is based on a firefighter robot that needs to follow a black line and to dodge possible obstacles on the way, at the end rescuing a victim represented by a soda can. Our team successfully got the first place on the state region, and 5th place on National level.</p>
+
+        <!-- Related Projects Row -->
+<hr>
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+        <div class="row">
+            <div class="col-lg-12">
+<!--                <h3 class="page-header">Related Projects</h3>
+-->
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img style="height:20%" class="myImg img-responsive portfolio-item" src="/media/about_me/out_door.jpg" alt="Image posted on city outdoors.">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="myImg img-responsive portfolio-item" src="/media/about_me/fortaleza.jpg" alt="National competition level on Fortaleza city, Victor Eduardo, Francisco Neto, Alexandre Amaral, Olivio Gabriel, Yang Tavares and Allyson Ulisses from left to right.">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="myImg img-responsive portfolio-item" src="/media/about_me/interview.jpg" alt="Interview to local TV channel.">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6" style=>
+                <a href="#">
+                    <img class="myImg img-responsive portfolio-item" src="/media/about_me/torcida.jpg" alt="Amazing crowd from my class while I was on stage.">
+                </a>
+            </div>
+
+
+        </div>
+<hr>
+        <!-- /.row -->
+
+<p style="text-align: justify;" >Fortunately, the author passed the national exam <a href="enem.inep.gov.br">"ENEM"</a>
+before finishing High School last year, ingressing on "Science and Technology" undergraduation course at the Federal University of Rio Grande do Norte. While participating on robotics competition before, the author met professor <a href="https://www.linkedin.com/in/aquiles-burlamaqui-1332922a/?ppe=1">Aquiles</a> 
+which helped to organize the competition. From there, the author searched Aquiles to participate on Scientific initiation inside university, having opportunities to learn about educational robotics, web and app development, embedded systems, also to participate on various events involving robotics competitions, educational robotics lectures and arduino workshops.</p>
+<hr>
+        <div class="row">
+            <div class="col-lg-12">
+<!--                <h3 class="page-header">Related Projects</h3>
+-->
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img style="height:30%" class="myImg img-responsive portfolio-item" src="/media/about_me/arduino_day.jpg" alt="Arduino day workshop presented by the author and Mauricio Rego.">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="myImg img-responsive portfolio-item" src="/media/about_me/fll_comp.jpg" alt="The author voluteered to be a judge at First LEGO league, with Alleft Lucas.">
+                </a>
+            </div>
+
+
+            <div class="col-sm-3 col-xs-6" style=>
+                <a href="#">
+                    <img style="height:40%;width:100%" class="myImg img-responsive portfolio-item" src="/media/about_me/roboeduc_boy.jpg" alt="RoboEduc student who won competition medal.">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="myImg img-responsive portfolio-item" src="/media/about_me/roboeduc.jpg" alt="RoboEduc staff, professor Aquiles laying down on the floor.">
+                </a>
+            </div>
+
+        </div>
+
+<iframe  width="420" height="315"
+src="https://www.youtube.com/embed/nezFxeoqfWA" allowfullscreen>
+</iframe> 
+<hr>
+                <p style="text-align: justify;" > While working with professor Aquiles on the Lab of Automation and Robotics (LAR), the author took place on the ongoing project "One robot per student" (URA), supposed to deliver low cost robots to public schools, enhancing country education with educational robotics, as seen on the video: </p>
+<iframe  width="420" height="315"
+src="https://www.youtube.com/embed/Fpf_BwpumSI" allowfullscreen>
+</iframe>
+                <p style="text-align: justify;" > Also had the opportunity to work with professor <a href="https://sigaa.ufrn.br/sigaa/public/docente/portal.jsf?siape=1754848">Laurita</a>
+, on the project called 10 dimensions, supposed to control a light station based on wind speed and direction to enhance teather shows. </p>
+<hr>
+				<p style= "text-align: justify;">Right after finishing undergraduation second year, the author applied to participate on 
+<a href="http://www.cienciasemfronteiras.gov.br/web/csf">Science without Borders gorvernment program</a>
+being successfully selected to study on California State University, East Bay. There, he could improve his english language living with native english speakers, participate on local events such as hackatons, 
+</p> 
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+		<script>
+		$(document).ready(function () {
+			$('img').click(function () {
+				//var img_id = $(this).attr('id');
+				//var img = document.getElementById('myImg');
+				// Get the modal
+				var modal = document.getElementById('myModal');
+
+				// Get the image and insert it inside the modal - use its "alt" text as a caption
+				var modalImg = document.getElementById("img01");
+				var captionText = document.getElementById("caption");
+					modal.style.display = "block";
+					modalImg.src = this.src;
+					captionText.innerHTML = this.alt;
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() { 
+					modal.style.display = "none";
+				}
+			});
+		});
+		</script>
+
+
+</font>
+</body>
+
+</html>
+{% endblock %}

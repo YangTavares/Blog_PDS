@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog PDS</title>
+    <title>Yang Tavares</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -55,17 +55,20 @@
 								<a href="{% url 'blog.views.post_new' %}">New post</a>
 							</li>
 						{% endif %}         
-				{% else %}
                     <li>
 						 <a href="{% url 'blog.views.user_new' %}">New User</a>
                     </li>
                     <li>
 						 <a href="{% url 'blog.views.user_login' %}">Login</a>
                     </li>
+				{% else %}
 
 				{% endif %}         
                     <li>
 						 <a href="{% url 'blog.views.search_db' %}">Search</a>
+                    </li>
+                    <li>
+						 <a href="{% url 'blog.views.about_me' %}">About me</a>
                     </li>
                 </ul>
             </div>

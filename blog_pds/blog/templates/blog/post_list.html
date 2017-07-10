@@ -19,12 +19,15 @@
                 <h2>
                     <a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a>
                 </h2>
+				<p style="float:right">
+					Views: {{ post.views }}
+				</p >
                 <p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.published_date }}</p>
                 <hr>
                 <img class="img-responsive" src="{{post.post_pic.url}}" alt="">
                 <hr>
 		{% autoescape off %}
-                <p>{{ post.post_text|linebreaksbr }}</p>
+                <p  style="text-align: justify;" >{{ post.post_text|linebreaksbr }}</p>
 		{% endautoescape %}
                 <a class="btn btn-primary" href="{% url 'blog.views.post_detail' pk=post.pk %}">Read More<span class="glyphicon glyphicon-chevron-right"></span></a>
 
@@ -61,39 +64,6 @@
                     <!-- /.input-group -->
                 </div>
 
-                <!-- Blog Categories Well -->
-                <div class="well">
-                    <h4>Blog Categories</h4>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                    </div>
-                    <!-- /.row -->
-                </div>
 
                 <!-- Side Widget Well -->
                 <div class="well">

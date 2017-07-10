@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <h1>Search for:</h1>
+   <!-- <h1>Search for:</h1>
     <form method="POST" class="post-form">{% csrf_token %}
 		  <select name="search_option">
 		  		<option value="blog_user">User</option>
@@ -31,6 +31,7 @@
 			</div>
 		{% endfor %}
 		{% endif %}
+		-->
 		{%if blog_post%}
 		{% for post in blog_post %}
 			<!-- First Blog Post -->

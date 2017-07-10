@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - Sample Post</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1 style="margin-bottom:40px">Class properties and variables</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p style="margin-bottom:40px">Here we are goint to know how to create,expose and access properties of the classes.</p>
+                    <img class="img-responsive" src="img/worm.png" alt="" style="margin-bottom:40px">
+                    <p style="margin-bottom:40px">First we need to say if the variable is "public" or "private", the public statement means that you can access the variable out of its class and the private you cannot access the variable out of the class.</p>
+                    <p style="margin-bottom:40px">There are two ways to access the public variables at a class, you can create methods and access it directly as in Java, or you can create the get-set accessors.</p>
+                    <p style="margin-bottom:40px">The get-set accessors uses a method made as shown. "get" is used to return a value when the "Size" is called and "set" is used to assign a "value" to the variable. The "value" statement gets the assigned value passed by the " = " operator.</p>
+                    <xmp>
+using System;
+
+namespace Tutorial
+{
+    class Worm
+    {
+        //size cannot be accessed by outer classes
+        private int size;
+        //alive can be acessed by outer classes
+        public string alive = "no";
+        //Changes size value
+        public void setSize(int x){
+            size = x;
+        }
+        //return size value
+        public int getSize(){
+            return size;
+        }
+        //get-set accessors method for accessing the private variable "size".
+        public int Size
+        {
+            //here it cant return the size by simply using "Worm.size"
+            get
+            {
+                return size;
+            }
+            //here it gets the value from the opetator " = " and assign to the size variable
+            set
+            {
+                if(alive =="yes")
+                    size = value;
+            }
+        }
+    }
+
+}
+
+
+                    </xmp> 
+                    <img  class="img-responsive" src="img/wormmain.png" alt="" style="margin-bottom:40px">
+                    <p style="margin-bottom:40px">So here we are testing the properties seen before.</p>
+                    <xmp>
+
+using System;
+
+namespace Tutorial
+{
+    class MainClass
+    {
+        public static void Main (string[] args)
+        {
+            //Creating instance of Worm
+            Worm digger = new Worm ();
+            //Accessing directly the alive variable from the Worm instance
+            digger.alive = "yes";
+            //Setting the size private variable 
+            digger.setSize (20);
+            //Printing the size value
+            Console.WriteLine(digger.getSize());
+            //Setting the size private variable 
+            digger.Size = 43;
+            //Printing the size value
+            Console.WriteLine(digger.Size);
+
+        }
+    }
+}
+
+                    </xmp>
+                    <img style="margin-bottom:40px" class="img-responsive" src="img/wormprint.png" alt="">
+                    <p style="margin-bottom:40px">The result at printing</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

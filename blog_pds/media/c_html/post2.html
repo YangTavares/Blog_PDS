@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - Sample Post</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1 style="margin-bottom:40px">Instantiating a Class</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p style="margin-bottom:40px">Here we are going to instante a class in a main method</p>
+                    <img class="img-responsive" src="img/Dog.png" alt="" style="margin-bottom:40px">
+                    <p style="margin-bottom:40px">Right click on the directory "Propeties" and then Add->New File...->General->Empty Class->New</p>
+                    <p style="margin-bottom:40px">So there we created a Class "Dog" that contains a method called "bark". When it is called, the console gets a "Roof!" printed</p>
+                    <xmp>
+using System;
+
+namespace Tutorial
+{
+    //Created a public class named Dog
+    public class Dog
+    {
+        //Method from Dog class called bark that prints "Roof!" at the console
+        public void bark(){
+            Console.WriteLine ("Roof!");
+        }
+    }
+}
+                    </xmp>  
+                    <img  class="img-responsive" src="img/maindog.png" alt="" style="margin-bottom:40px">
+                    <p style="margin-bottom:40px">Now we are creating an instantiation of the Class Dog and then using its method to print at the console.</p>
+                     <xmp>
+using System;
+
+namespace Tutorial
+{
+    class MainClass
+    {
+        public static void Main (string[] args)
+        {
+            //Creating an instantiation of the Dog Class
+            Dog Coco = new Dog ();
+            //Using the Dog method called "bark" to print "Roof!" a the console
+            Coco.bark ();
+        }
+    }
+}
+
+                    </xmp>  
+                    <img  class="img-responsive" src="img/dogprint.png" alt="" style="margin-bottom:40px">
+                     <p style="margin-bottom:40px">The result by running the program made.</p>
+
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

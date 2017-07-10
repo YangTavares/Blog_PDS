@@ -3,5 +3,6 @@ from .models import *
 
 admin.site.register(Post)
 admin.site.register(Comment)
+admin.site.register(Denounce)
 admin.site.register(Damoa)
 admin.site.register(UserExtend)

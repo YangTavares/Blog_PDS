@@ -10,6 +10,9 @@ from django.contrib.auth import authenticate, login
 from itertools import chain
 from operator import attrgetter
 
+def about_me(request):
+	return render(request,'blog/about_me.html')
+
 def users_chat(request,pk):
 	if request.method == "POST":
 		damoa_text = request.POST.get('message')
@@ -17,8 +20,8 @@ def users_chat(request,pk):
 		receiver = User.objects.get(pk=pk)
 		new_damoa = Damoa(sender=sender, receiver=receiver, text=damoa_text)
 		new_damoa.save()
-	senders = Damoa.objects.filter(sender__pk=pk)
-	receivers = Damoa.objects.filter(receiver__pk=pk)
+	senders = Damoa.objects.filter(sender__pk=pk).filter(receiver__pk=request.user.pk)
+	receivers = Damoa.objects.filter(receiver__pk=pk).filter(sender__pk=request.user.pk)
 	sender_receiver_messages = sorted(chain(senders,receivers),key=attrgetter('created_date'))
 	if sender_receiver_messages:
 		return render(request, 'blog/users_chat.html',{'receiver_pk':pk, 'sender_messages':sender_receiver_messages})
@@ -97,16 +100,35 @@ def post_list(request):
 	posts = Post.objects.filter()
 	return render(request, 'blog/post_list.html', {'posts': posts})
 
+def denounce_comment(request,pk):
+	bad_comment = Denounce.create_denounce(Comment.objects.get(pk=pk))
+	posts = Post.objects.filter()
+	return render(request, 'blog/post_list.html', {'posts': posts})
+
+def delete_comment(request,pk):
+	delete_c = Comment.objects.get(pk=pk)
+	delete_c.delete()
+	posts = Post.objects.filter()
+	return render(request, 'blog/post_list.html', {'posts': posts})
+		
+	
+
 def post_detail(request, pk):
 	if request.method == "POST":
-		form = CommentForm(request.POST, request.FILES)
-		if form.is_valid():
-			comment = form.save(commit=False)
-			comment.post_id = Post.objects.get(pk=pk)
-			comment.author = request.user
-			comment.created_date = timezone.now()
-			comment.save()
+		#form = CommentForm(request.POST, request.FILES)
+		#if form.is_valid():
+		#comment = form.save(commit=False)
+		comment = Comment()
+		comment.text = request.POST.get('message')
+		comment.post_id = Post.objects.get(pk=pk)
+		comment.author = request.POST.get('username')
+		comment.c_email = request.POST.get('useremail')
+		comment.created_date = timezone.now()
+		comment.save()
 	post = get_object_or_404(Post, pk=pk)
+	post.views = post.views+1
+	post.save()
+	print(post.views) 
 	comments = Comment.objects.filter(post_id=post.id)
 	form = CommentForm()
 	return render(request, 'blog/post_detail.html', {'post': post,'comments': comments,'form': form})
