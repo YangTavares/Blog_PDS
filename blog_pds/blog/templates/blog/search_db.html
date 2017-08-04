@@ -1,18 +1,19 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-   <!-- <h1>Search for:</h1>
+    <h2>Search post:</h2>
     <form method="POST" class="post-form">{% csrf_token %}
+		<!--  		<option value="user_message">Message</option>
 		  <select name="search_option">
 		  		<option value="blog_user">User</option>
-		  		<option value="user_message">Message</option>
-		  		<option value="blog_post">Post</option>
+		  			<option value="blog_post">Post</option>
 		  </select>
+		-->
 		  <input type="text" name="username">
 		  <br>
         <button type="submit" class="save btn btn-default">Search</button>
     </form>
-		{%if usernames%}
+<!--		{%if usernames%}
 		{% for usernames in usernames %}
 			<div class="post">
 				<p>username: {{ usernames.username }}</p>
